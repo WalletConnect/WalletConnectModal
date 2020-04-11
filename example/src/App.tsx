@@ -9,8 +9,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 // @ts-ignore
 import Fortmatic from "fortmatic";
 import Torus from "@toruslabs/torus-embed";
-import Portis from "@portis/web3";
-import Authereum from "authereum";
+import LedgerProvider from "@web3modal/ledger-provider";
+import TrezorProvider from "@web3modal/trezor-provider";
 
 import Button from "./components/Button";
 import Column from "./components/Column";
@@ -229,6 +229,7 @@ class App extends React.Component<any, any> {
   public getNetwork = () => getChainData(this.state.chainId).network;
 
   public getProviderOptions = () => {
+    const rpcUrl = getChainData(this.state.chainId).rpc_url;
     const providerOptions = {
       walletconnect: {
         package: WalletConnectProvider,
@@ -246,15 +247,19 @@ class App extends React.Component<any, any> {
           key: process.env.REACT_APP_FORTMATIC_KEY
         }
       },
-      portis: {
-        package: Portis,
+      ledger: {
+        package: LedgerProvider,
         options: {
-          id: process.env.REACT_APP_PORTIS_ID
+          rpcUrl
         }
       },
-      authereum: {
-        package: Authereum,
-        options: {}
+      trezor: {
+        package: TrezorProvider,
+        options: {
+          rpcUrl,
+          manifestEmail: "example@web3modal.com",
+          manifestAppUrl: "https://web3modal.com"
+        }
       }
     };
     return providerOptions;

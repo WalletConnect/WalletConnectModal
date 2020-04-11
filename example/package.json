@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@portis/web3": "^2.0.0-beta.40",
     "@toruslabs/torus-embed": "^1.2.4",
     "@walletconnect/web3-provider": "^1.0.0-beta.47",
-    "authereum": "^0.0.4-beta.68",
+    "@web3modal/ledger-provider": "^1.0.0",
+    "@web3modal/trezor-provider": "^1.0.0",
     "axios": "^0.18.0",
     "bignumber.js": "^8.1.1",
     "ethereumjs-util": "^6.1.0",
